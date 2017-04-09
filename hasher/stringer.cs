@@ -8,7 +8,7 @@ namespace hasher
     {
         public string encrypt(string input, string password)
         {
-            core c = new hasher.core();
+            core c = new core();
 
             // Get the bytes of the string
             byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(input);

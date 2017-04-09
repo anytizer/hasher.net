@@ -4,7 +4,7 @@ using System.Text;
 
 namespace hasher
 {
-    public class salted : security
+    public class Salted : security
     {
         public string encrypt(string text, string password)
         {

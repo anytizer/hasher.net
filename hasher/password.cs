@@ -14,8 +14,10 @@ namespace hasher
             string pepper = "kn0wn5a1t";
 
             string hashed;
-            hashed = s.encrypt(raw + salt, pepper);
-            hashed = s.encrypt(salt + hashed, salt);
+            //hashed = s.encrypt(raw + salt, pepper);
+            //hashed = s.encrypt(salt + hashed, salt);
+
+            hashed = s.encrypt(raw, salt);
 
             return hashed;
         }
@@ -26,8 +28,10 @@ namespace hasher
             string pepper = "kn0wn5a1t";
 
             string unhashed;
-            unhashed = s.decrypt(hashed, pepper);
+            //unhashed = s.decrypt(hashed, pepper);
             //unhashed = s.DecryptString(unhashed, salt);
+
+            unhashed = s.decrypt(hashed, salt);
 
             return unhashed;
         }

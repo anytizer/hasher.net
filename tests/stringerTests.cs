@@ -6,24 +6,39 @@ namespace tests
     [TestClass()]
     public class stringerTests
     {
+        private string _data = "A quick brown fox jumps over the lazy dog.";
+        private string _salt = "pa$svv0rd";
+        private string _pepper = "other";
+
         [TestMethod()]
         [TestCategory("String")]
         public void EncryptTextTest()
         {
-            stringer s = new stringer();
-            string e = s.encrypt("hi", "pass1");
+            string data = this._data;
+            string salt = this._salt;
 
-            Assert.AreEqual("LVaqrstKTIfZ4dPkaGNe+Q==", e);
+            stringer s = new stringer();
+            string e = s.encrypt(data, salt);
+            string decrypted = s.decrypt(e, salt);
+
+            /**
+             * It is awlays different, so, cannot check for this.
+             */
+            //Assert.AreEqual("pGdzQhW2o7btTq+MV+zMUA==", e);
+            Assert.AreEqual(data, decrypted);
         }
 
         [TestMethod()]
         [TestCategory("String")]
         public void DecryptTextTest()
         {
-            stringer s = new stringer();
-            string e = s.decrypt("LVaqrstKTIfZ4dPkaGNe+Q==", "pass1");
+            string salt = this._salt;
 
-            Assert.AreEqual("hi", e);
+            stringer s = new stringer();
+            string e = s.decrypt("pGdzQhW2o7btTq+MV+zMUA==", salt);
+            //string e = s.decrypt("LVaqrstKTIfZ4dPkaGNe+Q==", salt);
+
+            Assert.AreEqual(this._data, e);
         }
 
         [TestMethod()]
@@ -44,6 +59,7 @@ namespace tests
         public void SaltedBytesTest()
         {
             string source = "item";
+
             random r = new random();
             byte[] bs = r.GetRandomBytes();
             string salt = System.Text.Encoding.UTF8.GetString(bs);

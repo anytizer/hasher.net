@@ -55,6 +55,7 @@
     <Compile Include="passwordTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="randomTests.cs" />
+    <Compile Include="SaltAndPepperTests.cs" />
     <Compile Include="stringerTests.cs" />
   </ItemGroup>
   <ItemGroup>

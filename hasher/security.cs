@@ -9,6 +9,7 @@ namespace hasher
     public interface security
     {
         string encrypt(string original, string salt);
+
         string decrypt(string original, string salt);
     }
 }
