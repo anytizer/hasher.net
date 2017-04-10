@@ -13,11 +13,12 @@ namespace hasher
             stringer s = new stringer();
             string pepper = "kn0wn5a1t";
 
-            string hashed;
+            string hashed = raw;
             //hashed = s.encrypt(raw + salt, pepper);
             //hashed = s.encrypt(salt + hashed, salt);
 
-            hashed = s.encrypt(raw, salt);
+            hashed = s.encrypt(hashed, salt);
+            hashed = s.encrypt(hashed, pepper);
 
             return hashed;
         }
@@ -27,11 +28,9 @@ namespace hasher
             stringer s = new stringer();
             string pepper = "kn0wn5a1t";
 
-            string unhashed;
-            //unhashed = s.decrypt(hashed, pepper);
-            //unhashed = s.DecryptString(unhashed, salt);
-
-            unhashed = s.decrypt(hashed, salt);
+            string unhashed = hashed;
+            unhashed = s.decrypt(unhashed, pepper);
+            unhashed = s.decrypt(unhashed, salt);
 
             return unhashed;
         }

@@ -32,13 +32,13 @@ namespace tests
         [TestCategory("String")]
         public void DecryptTextTest()
         {
-            string salt = this._salt;
+            string salt = this._pepper;
 
             stringer s = new stringer();
-            string e = s.decrypt("pGdzQhW2o7btTq+MV+zMUA==", salt);
-            //string e = s.decrypt("LVaqrstKTIfZ4dPkaGNe+Q==", salt);
+            string e = s.encrypt(this._data, salt);
+            string d = s.decrypt(e, salt);
 
-            Assert.AreEqual(this._data, e);
+            Assert.AreEqual(this._data, d);
         }
 
         [TestMethod()]

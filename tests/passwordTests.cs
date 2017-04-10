@@ -18,30 +18,28 @@ namespace tests
         [TestCategory("Password")]
         public void hashTest()
         {
-            string originalRawPassword = "some";
             string salt = originalSalt;
-
-            // refreshed all the times
-            string expected = "/nxSysLuE6GTGbjPpoFSMY6bLpyUEuwH30dI8DQ68fStNckXuvCxF+trFO4r7zqpT6wzXcla55gMy7n6GY3QGA==";
+            string expected = this.originalRawPassword;
 
             password p = new password();
             string hash = p.hash(originalRawPassword, salt);
+            string unhash = p.unhash(hash, salt);
 
-            Assert.AreEqual(expected, hash);
+            Assert.AreEqual(originalRawPassword, unhash);
         }
 
         [TestMethod()]
         [TestCategory("Password")]
         public void unhashTest()
         {
-            string expected = originalRawPassword;
-            string hashed = "/nxSysLuE6GTGbjPpoFSMY6bLpyUEuwH30dI8DQ68fStNckXuvCxF+trFO4r7zqpT6wzXcla55gMy7n6GY3QGA==";
             string salt = originalSalt;
+            string expected = this.originalRawPassword;
 
             password p = new password();
-            string unhashed = p.unhash(hashed, salt);
+            string hash = p.hash(originalRawPassword, salt);
+            string unhash = p.unhash(hash, salt);
 
-            Assert.AreEqual(expected, unhashed);
+            Assert.AreEqual(originalRawPassword, unhash);
         }
 
     }
